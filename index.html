@@ -7,15 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.3/css/all.min.css" />
-    <link rel="stylesheet" href="/assets/sweetalert2/sweetalert2.min.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 
 <body>
-    <div class="container">
-        <h1>Customer Management</h1>
-        <form>
+    <div class="tab-content">
+        <h1 style="color: green; text-align: center;">Customer Management</h1>
+        <div class="row">
+            <div class="col-sm-5">
+                <button type="button" onclick="showCreateCustomer()" style="margin-left: 850px; width: 180px;"
+                    id="btnCreateCustomer" class="btn btn-outline-primary">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    Create customer
+                </button>
+            </div>
+            <!-- <form>
             <fieldset class="row g-3">
                 <div class="col-md-6">
                     <label class="form-label">Full name</label>
@@ -34,186 +42,298 @@
                     <input type="text" class="form-control" id="address">
                 </div>
                 <div class="col-md-12">
-                    <button onclick="createCustomer()" id="btnCreateCustomer" class="btn btn-outline-primary">
+                    <button type="button" onclick="createCustomer()" id="btnCreateCustomer" class="btn btn-outline-primary">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         Create customer
                     </button>
                 </div>
             </fieldset>
-        </form>
-        <div class="container">
-            <table class="table table-hover text-center">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Full Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Balance</th>
-                        <th colspan="4">Action</th>
-                    </tr>
-                </thead>
-                <tbody id="customer">
+        </form> -->
+
+            <div class="content">
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Balance</th>
+                            <th colspan="5">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customer">
 
 
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
 
 
 
-        <!-- -----Modal------- -->
+            <!-- -----Modal------- -->
 
-        <div class="modal fade" id="updateCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Customer</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="col-md-6 d-none" >
-                                <label class="form-label" >id</label>
-                                <input type="text" class="form-control" id="editI" style="width: 450px;">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Full name</label>
-                                <input type="text" class="form-control" id="editFullName" style="width: 450px;">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Email</label>
-                                <input type="text" class="form-control" id="editEmail" style="width: 450px;">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Phone</label>
-                                <input type="tel" class="form-control" id="editPhone" style="width: 450px;">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Address</label>
-                                <input type="text" class="form-control" id="editAddress" style="width: 450px;">
-                            </div>
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" onclick="closeModal()" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
-                        <button type="button" onclick="saveEditCustomer()" class="btn btn-primary saveCustomer" >Save
-                            changes</button>
+            <div class="modal fade" id="createCustomer" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Create Customer</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="col-md-6">
+                                    <label class="form-label">Full name</label>
+                                    <input type="text" class="form-control" id="fullName" style="width: 450px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="email" style="width: 450px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="phone" style="width: 450px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Address</label>
+                                    <input type="text" class="form-control" id="address" style="width: 450px;">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" onclick="closeModal()" class="btn btn-secondary "
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="button" onclick="createCustomer()" class="btn btn-primary saveCustomer">Create
+                                Customer</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="modal fade" id="depositCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Deposit</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="col-md-6 d-none" >
-                                <label class="form-label" >id</label>
-                                <input type="text" class="form-control" id="depositI" style="width: 450px;">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Full name</label>
-                                <input type="text" class="form-control" id="depositFullName" style="width: 450px;" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Email</label>
-                                <input type="text" class="form-control" id="depositEmail" style="width: 450px;" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">balance</label>
-                                <input type="number" class="form-control" id="balance" style="width: 450px;" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Transaction Amout</label>
-                                <input type="number" class="form-control" id="transactionAmountDeposit" style="width: 450px;">
-                            </div>
 
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" onclick="closeModal()" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
-                        <button type="button" onclick="deposit()" class="btn btn-primary" >Deposit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <div class="modal fade" id="updateCustomer" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Customer</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="col-md-6 d-none">
+                                    <label class="form-label">id</label>
+                                    <input type="text" class="form-control" id="editI" style="width: 450px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Full name</label>
+                                    <input type="text" class="form-control" id="editFullName" style="width: 450px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="editEmail" style="width: 450px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="editPhone" style="width: 450px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Address</label>
+                                    <input type="text" class="form-control" id="editAddress" style="width: 450px;">
+                                </div>
 
-        <div class="modal fade" id="withdrawCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Withdraw</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="col-md-6 d-none" >
-                                <label class="form-label" >id</label>
-                                <input type="text" class="form-control" id="withdrawI" style="width: 450px;">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Full name</label>
-                                <input type="text" class="form-control" id="withdrawFullName" style="width: 450px;" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Email</label>
-                                <input type="text" class="form-control" id="withdrawEmail" style="width: 450px;" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">balance</label>
-                                <input type="number" class="form-control" id="balanceWithdraw" style="width: 450px;" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Transaction Amout</label>
-                                <input type="number" class="form-control" id="transactionAmountWithdraw" style="width: 450px;">
-                            </div>
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" onclick="closeModal()" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
-                        <button type="button" onclick="withdraw()" class="btn btn-primary" >Withdraw</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" onclick="closeModal()" class="btn btn-secondary "
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="button" onclick="saveEditCustomer()" class="btn btn-primary saveCustomer">Save
+                                changes</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="depositCustomer" tabindex="-1" data-bs-backdrop="static"
+                data-bs-keyboard="false" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Deposit</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="col-md-6 d-none">
+                                    <label class="form-label">id</label>
+                                    <input type="text" class="form-control" id="depositI" style="width: 450px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Full name</label>
+                                    <input type="text" class="form-control" id="depositFullName" style="width: 450px;"
+                                        readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="depositEmail" style="width: 450px;"
+                                        readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">balance</label>
+                                    <input type="number" class="form-control" id="balance" style="width: 450px;"
+                                        readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Transaction Amout</label>
+                                    <input type="number" class="form-control" id="transactionAmountDeposit"
+                                        style="width: 450px;">
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" onclick="closeModal()" class="btn btn-secondary "
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="button" onclick="deposit()" class="btn btn-primary">Deposit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="withdrawCustomer" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Withdraw</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="col-md-6 d-none">
+                                    <label class="form-label">id</label>
+                                    <input type="text" class="form-control" id="withdrawI" style="width: 450px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Full name</label>
+                                    <input type="text" class="form-control" id="withdrawFullName" style="width: 450px;"
+                                        readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="withdrawEmail" style="width: 450px;"
+                                        readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">balance</label>
+                                    <input type="number" class="form-control" id="balanceWithdraw" style="width: 450px;"
+                                        readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Transaction Amout</label>
+                                    <input type="number" class="form-control" id="transactionAmountWithdraw"
+                                        style="width: 450px;">
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" onclick="closeModal()" class="btn btn-secondary "
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="button" onclick="withdraw()" class="btn btn-primary">Withdraw</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="transferCustomer" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Transfer</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form>
+                                <fieldset class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Sender name</label>
+                                        <input type="text" class="form-control" id="senderName" readonly>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Email</label>
+                                        <input type="text" class="form-control" id="senderEmail"  readonly>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Balance</label>
+                                        <input type="text" class="form-control" id="senderBalance" readonly>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Recipient</label>
+                                        <select class="form-control" id="recipientCustomer">
+                                            <option id="optionRecipient"></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">TransferAmount</label>
+                                        <input type="text" class="form-control" id="tranferAmount">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Fees (%)</label>
+                                        <input type="text" class="form-control" name="fees" value="10" readonly>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Transaction Amount</label>
+                                        <input type="text" class="form-control" id="transactionAmountTransfer"
+                                            name="transactionAmount" readonly>
+                                    </div>
+                                </fieldset>
+                            </form>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" onclick="closeModal()" class="btn btn-secondary "
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="button" onclick="withdraw()" class="btn btn-primary"></i> Withdraw</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
-    </div>
-
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        var customers = [
-            {
-                id: 1,
-                fullName: 'NVA',
-                email: 'nva@co.cc',
-                phone: '2345',
-                address: '28 Nguyễn Tri Phương',
-                balance: 0
-            },
-            {
-                id: 2,
-                fullName: 'NVB',
-                email: 'nvb@co.cc',
-                phone: '23456',
-                address: '28 Nguyễn Tri Phương',
-                balance: 0
-            }
-        ]
+        <script src="/js/bootstrap.bundle.min.js"></script>
+        <script src="/jquery/jquery-3.6.0.min.js"></script>
+        <script>
+            var customers = [
+                {
+                    id: 1,
+                    fullName: 'NVA',
+                    email: 'nva@co.cc',
+                    phone: '2345',
+                    address: '28 Nguyễn Tri Phương',
+                    balance: 0
+                },
+                {
+                    id: 2,
+                    fullName: 'NVB',
+                    email: 'nvb@co.cc',
+                    phone: '23456',
+                    address: '28 Nguyễn Tri Phương',
+                    balance: 0
+                }
+            ]
 
 
-        function renderCustomers() {
-            let htmls = "";
-            for (let i = 0; i < customers.length; i++) {
-                htmls += `
+            function renderCustomers() {
+                let htmls = "";
+                for (let i = 0; i < customers.length; i++) {
+                    htmls += `
                 <tr class = "tr_${i}">
                             <td>${customers[i].id}</td>
                             <td>${customers[i].fullName}</td>
@@ -222,283 +342,326 @@
                             <td>${customers[i].address}</td>
                             <td>${customers[i].balance}</td>
                             <td>
-                                <button type="button" class="btn btn-outline-secondary editCustomer${i}" onclick="editCustomer(${i})" data-bs-toggle="modal" data-bs-target="#updateCustomer">
+                                <button type="button" class="btn btn-outline-secondary editCustomer${i}" onclick="editCustomer(${i})">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
                                     Edit
                                 </button>
                             </td>
                             <td>
-                                <button class="btn btn-outline-success deposit${i}" onclick="showDeposit(${i})" data-bs-toggle="modal" data-bs-target="#depositCustomer">
+                                <button class="btn btn-outline-success deposit${i}" onclick="showDeposit(${i})">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
                                     Deposit
                                 </button>
                             </td>
-    
                             <td>
-                                <button class="btn btn-outline-warning withdraw${i}" onclick="showWithdraw(${i})" data-bs-toggle="modal" data-bs-target="#withdrawCustomer">
+                                <button class="btn btn-outline-warning withdraw${i}" onclick="showWithdraw(${i})">
+                                    <i class="fa fa-minus" aria-hidden="true"></i>
                                     Withdraw
                                 </button>
                             </td>
                             <td>
+                                <button class="btn btn-outline-primary transfer${i}" onclick="showTransfer(${i})">
+                                    <i class="fa fa-exchange-alt" aria-hidden="true"></i>
+                                    Transfer
+                                </button>
+                            </td>
+                            <td>
                                 <button class="btn btn-outline-danger delete${i}" onclick="deleteCustomer(${i})">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
                                     Delete
                                 </button>
                             </td>
                         </tr>
             `;
-            }
-            document.querySelector('#customer').innerHTML = htmls;
-        }
-
-
-        function createCustomer() {
-            let inputFullName = document.querySelector(`#fullName`).value;
-            let inputEmail = document.querySelector(`#email`).value;
-            let inputPhone = document.querySelector(`#phone`).value;
-            let inputAddress = document.querySelector(`#address`).value;
-            let inputBalance = 0;
-            let id = Math.floor(Math.random() * (100 - 1) + 1);
-            if (inputAddress == '' & inputEmail == '' & inputFullName == '' & inputPhone == '') {
-                alert('Vui lòng điền vào thông tin !!')
-                return;
-            }
-            if (inputFullName == '' & inputEmail == '') {
-                alert('Fullname Và Email không được trống !!')
-                return;
-            }
-            if (inputFullName == '' & inputPhone == '') {
-                alert('Fullname Và Phone không được trống !!')
-                return;
-            }
-            if (inputFullName == '' & inputAddress == '') {
-                alert('Fullname Và Address không được trống !!')
-                return;
-            }
-            if (inputEmail == '' & inputAddress == '') {
-                alert('Email Và Address không được trống !!')
-                return;
-            }
-            if (inputEmail == '' & inputPhone == '') {
-                alert('Email Và Phone không được trống !!')
-                return;
-            }
-            if (inputAddress == '' & inputPhone == '') {
-                alert('Address Và Phone không được trống !!')
-                return;
-            }
-            if (inputFullName == '') {
-                alert('Fullname không được trống !!')
-                return;
-            }
-            if (inputEmail == '') {
-                alert('Email không được trống !!')
-                return;
-            }
-            if (inputPhone == '') {
-                alert('Phone không được trống !!')
-                return;
-            }
-            if (inputAddress == '') {
-                alert('Address không được trống !!')
-                return;
+                }
+                document.querySelector('#customer').innerHTML = htmls;
             }
 
-            var customer = {};
-            customer.id = id;
-            customer.fullName = inputFullName;
-            customer.email = inputEmail;
-            customer.phone = inputPhone;
-            customer.address = inputAddress;
-            customer.balance = inputBalance;
-            customers.unshift(customer);
-            setData(key_Customer, customers);
-            renderCustomers();
-            document.querySelector(`#fullName`).value = null;
-            document.querySelector(`#email`).value = null;
-            document.querySelector(`#phone`).value = null;
-            document.querySelector(`#address`).value = null;
-        }
+            function showCreateCustomer() {
+                $('#createCustomer').modal('show');
+            }
 
-        function deleteCustomer(i) {
-            let confirmed = window.confirm("Are you sure to remove this?");
-            if (confirmed) {
-                customers.splice(i, 1);
+
+            function createCustomer() {
+                let inputFullName = document.querySelector(`#fullName`).value;
+                let inputEmail = document.querySelector(`#email`).value;
+                let inputPhone = document.querySelector(`#phone`).value;
+                let inputAddress = document.querySelector(`#address`).value;
+                let inputBalance = 0;
+                let id = Math.floor(Math.random() * (100 - 1) + 1);
+                if (inputAddress == '' & inputEmail == '' & inputFullName == '' & inputPhone == '') {
+                    alert('Vui lòng điền vào thông tin !!')
+                    return;
+                }
+                if (inputFullName == '' & inputEmail == '') {
+                    alert('Fullname Và Email không được trống !!')
+                    return;
+                }
+                if (inputFullName == '' & inputPhone == '') {
+                    alert('Fullname Và Phone không được trống !!')
+                    return;
+                }
+                if (inputFullName == '' & inputAddress == '') {
+                    alert('Fullname Và Address không được trống !!')
+                    return;
+                }
+                if (inputEmail == '' & inputAddress == '') {
+                    alert('Email Và Address không được trống !!')
+                    return;
+                }
+                if (inputEmail == '' & inputPhone == '') {
+                    alert('Email Và Phone không được trống !!')
+                    return;
+                }
+                if (inputAddress == '' & inputPhone == '') {
+                    alert('Address Và Phone không được trống !!')
+                    return;
+                }
+                if (inputFullName == '') {
+                    alert('Fullname không được trống !!')
+                    return;
+                }
+                if (inputEmail == '') {
+                    alert('Email không được trống !!')
+                    return;
+                }
+                if (inputPhone == '') {
+                    alert('Phone không được trống !!')
+                    return;
+                }
+                if (inputAddress == '') {
+                    alert('Address không được trống !!')
+                    return;
+                }
+
+                var customer = {};
+                customer.id = id;
+                customer.fullName = inputFullName;
+                customer.email = inputEmail;
+                customer.phone = inputPhone;
+                customer.address = inputAddress;
+                customer.balance = inputBalance;
+                customers.unshift(customer);
                 setData(key_Customer, customers);
                 renderCustomers();
-            }
-        }
+                document.querySelector(`#fullName`).value = null;
+                document.querySelector(`#email`).value = null;
+                document.querySelector(`#phone`).value = null;
+                document.querySelector(`#address`).value = null;
+                $('#createCustomer').modal('hide');
 
-        function editCustomer(i) {
-            let tr = document.querySelector(`.tr_${i}`);
-            let oldFullname = tr.children[1].innerHTML;
-            let oldEmail = tr.children[2].innerHTML;
-            let oldPhone = tr.children[3].innerHTML;
-            let oldAddress = tr.children[4].innerHTML;
-            document.querySelector(`#editFullName`).value = tr.children[1].innerHTML;
-            document.querySelector(`#editEmail`).value = tr.children[2].innerHTML;
-            document.querySelector(`#editPhone`).value = tr.children[3].innerHTML;
-            document.querySelector(`#editAddress`).value = tr.children[4].innerHTML;
-            document.querySelector(`#editI`).value = i;
-        }
+            }
 
-        function saveEditCustomer(i) {
-            
-            let index = document.querySelector(`#editI`).value;
-            let inputEditFullName = document.querySelector(`#editFullName`).value;
-            let inputEditEmail = document.querySelector(`#editEmail`).value;
-            let inputEditPhone = document.querySelector(`#editPhone`).value;
-            let inputEditAddress = document.querySelector(`#editAddress`).value;
-            let inputBalance = customers[index].balance;
-            let id = customers[index].id;
-            if (inputEditAddress == '' & inputEditEmail == '' & inputEditFullName == '' & inputEditPhone == '') {
-                alert('Vui lòng điền vào thông tin !!')
-                return;
+            function deleteCustomer(i) {
+                let confirmed = window.confirm("Are you sure to remove this?");
+                if (confirmed) {
+                    customers.splice(i, 1);
+                    setData(key_Customer, customers);
+                    renderCustomers();
+                }
             }
-            if (inputEditFullName == '' & inputEditEmail == '') {
-                alert('Fullname Và Email không được trống !!')
-                return;
-            }
-            if (inputEditFullName == '' & inputEditPhone == '') {
-                alert('Fullname Và Phone không được trống !!')
-                return;
-            }
-            if (inputEditFullName == '' & inputEditAddress == '') {
-                alert('Fullname Và Address không được trống !!')
-                return;
-            }
-            if (inputEditEmail == '' & inputEditAddress == '') {
-                alert('Email Và Address không được trống !!')
-                return;
-            }
-            if (inputEditEmail == '' & inputEditPhone == '') {
-                alert('Email Và Phone không được trống !!')
-                return;
-            }
-            if (inputEditAddress == '' & inputEditPhone == '') {
-                alert('Address Và Phone không được trống !!')
-                return;
-            }
-            if (inputEditFullName == '') {
-                alert('Fullname không được trống !!')
-                return;
-            }
-            if (inputEditEmail == '') {
-                alert('Email không được trống !!')
-                return;
-            }
-            if (inputEditPhone == '') {
-                alert('Phone không được trống !!')
-                return;
-            }
-            if (inputEditAddress == '') {
-                alert('Address không được trống !!')
-                return;
-            }
-            customers[index] = new customer(id,inputEditFullName,inputEditEmail,inputEditPhone,inputEditAddress,inputBalance)
-            setData(key_Customer, customers);
-            renderCustomers();
-            document.querySelector(`#editFullName`).value = null;
-            document.querySelector(`#editEmail`).value = null;
-            document.querySelector(`#editPhone`).value = null;
-            document.querySelector(`#editAddress`).value = null;
-            // document.querySelector(`.saveCustomer`).classList.add("data-bs-dismiss="modal"");
-        }
 
-        function showDeposit(i){
-            let tr = document.querySelector(`.tr_${i}`);
-            let depositFullname = tr.children[1].innerHTML;
-            let depositEmail = tr.children[2].innerHTML;
-            let balance = tr.children[5].innerHTML;
-            document.querySelector(`#depositFullName`).value = tr.children[1].innerHTML;
-            document.querySelector(`#depositEmail`).value = tr.children[2].innerHTML;
-            document.querySelector(`#balance`).value = tr.children[5].innerHTML;
-            document.querySelector(`#depositI`).value = i;
-        }
-
-
-        function deposit(){
-            let index = document.querySelector(`#depositI`).value;
-            let transactionAmount = parseInt(document.querySelector(`#transactionAmountDeposit`).value);
-            let oldBalance = parseInt(customers[index].balance);
-            let newBalance = parseInt(transactionAmount + oldBalance);
-            // let inputEditEmail = document.querySelector(`#editEmail`).value;
-            // let inputEditPhone = document.querySelector(`#editPhone`).value;
-            // let inputEditAddress = document.querySelector(`#editAddress`).value;
-            // let inputBalance = customers[index].balance;
-            // let id = customers[index].id;
-            customers[index].balance = newBalance;
-            setData(key_Customer, customers);
-            renderCustomers();
-            document.querySelector(`#depositFullName`).value = null;
-            document.querySelector(`#depositEmail`).value = null;
-            document.querySelector(`#balance`).value = null;
-            document.querySelector(`#transactionAmountDeposit`).value = null;
-            alert('Nạp tiền thành công !!!')
-        }
-
-
-        function showWithdraw(i){
-            let tr = document.querySelector(`.tr_${i}`);
-            let depositFullname = tr.children[1].innerHTML;
-            let depositEmail = tr.children[2].innerHTML;
-            let balance = tr.children[5].innerHTML;
-            document.querySelector(`#withdrawFullName`).value = tr.children[1].innerHTML;
-            document.querySelector(`#withdrawEmail`).value = tr.children[2].innerHTML;
-            document.querySelector(`#balanceWithdraw`).value = tr.children[5].innerHTML;
-            document.querySelector(`#withdrawI`).value = i;
-        }
-
-
-        function withdraw(){
-            let index = document.querySelector(`#withdrawI`).value;
-            let transactionAmount = parseInt(document.querySelector(`#transactionAmountWithdraw`).value);
-            let oldBalance = parseInt(customers[index].balance);
-            if(oldBalance < transactionAmount){
-                alert('Số dư tài khoản không đủ !!!')
-                document.querySelector(`#transactionAmountWithdraw`).value = null;
-                return showWithdraw(index);
+            function editCustomer(i) {
+                let tr = document.querySelector(`.tr_${i}`);
+                let oldFullname = tr.children[1].innerHTML;
+                let oldEmail = tr.children[2].innerHTML;
+                let oldPhone = tr.children[3].innerHTML;
+                let oldAddress = tr.children[4].innerHTML;
+                document.querySelector(`#editFullName`).value = tr.children[1].innerHTML;
+                document.querySelector(`#editEmail`).value = tr.children[2].innerHTML;
+                document.querySelector(`#editPhone`).value = tr.children[3].innerHTML;
+                document.querySelector(`#editAddress`).value = tr.children[4].innerHTML;
+                document.querySelector(`#editI`).value = i;
+                $('#updateCustomer').modal('show');
             }
-            
-            let newBalance = parseInt(oldBalance - transactionAmount);
-            customers[index].balance = newBalance;
-            setData(key_Customer, customers);
-            renderCustomers();
-            document.querySelector(`#depositFullName`).value = null;
-            document.querySelector(`#depositEmail`).value = null;
-            document.querySelector(`#balance`).value = null;
-            document.querySelector(`#transactionAmountWithdraw`).value = null;
-            alert('rút tiền thành công !!!')
-        }
 
-        function customer(id, fullName, email, phone, address, balance) {
-            this.id = id;
-            this.fullName = fullName;
-            this.email = email;
-            this.phone = phone;
-            this.address = address;
-            this.balance = balance;
-        }
-        function getData(key) {
-            return JSON.parse(localStorage.getItem(key))
-        }
-        function setData(key, data) {
-            localStorage.setItem(key, JSON.stringify(data))
-        }
-        const key_Customer = "key_Customer";
+            function saveEditCustomer(i) {
 
-        function initCustomers() {
-            if (getData(key_Customer) == null) {
+                let index = document.querySelector(`#editI`).value;
+                let inputEditFullName = document.querySelector(`#editFullName`).value;
+                let inputEditEmail = document.querySelector(`#editEmail`).value;
+                let inputEditPhone = document.querySelector(`#editPhone`).value;
+                let inputEditAddress = document.querySelector(`#editAddress`).value;
+                let inputBalance = customers[index].balance;
+                let id = customers[index].id;
+                if (inputEditAddress == '' & inputEditEmail == '' & inputEditFullName == '' & inputEditPhone == '') {
+                    alert('Vui lòng điền vào thông tin !!')
+                    return;
+                }
+                if (inputEditFullName == '' & inputEditEmail == '') {
+                    alert('Fullname Và Email không được trống !!')
+                    return;
+                }
+                if (inputEditFullName == '' & inputEditPhone == '') {
+                    alert('Fullname Và Phone không được trống !!')
+                    return;
+                }
+                if (inputEditFullName == '' & inputEditAddress == '') {
+                    alert('Fullname Và Address không được trống !!')
+                    return;
+                }
+                if (inputEditEmail == '' & inputEditAddress == '') {
+                    alert('Email Và Address không được trống !!')
+                    return;
+                }
+                if (inputEditEmail == '' & inputEditPhone == '') {
+                    alert('Email Và Phone không được trống !!')
+                    return;
+                }
+                if (inputEditAddress == '' & inputEditPhone == '') {
+                    alert('Address Và Phone không được trống !!')
+                    return;
+                }
+                if (inputEditFullName == '') {
+                    alert('Fullname không được trống !!')
+                    return;
+                }
+                if (inputEditEmail == '') {
+                    alert('Email không được trống !!')
+                    return;
+                }
+                if (inputEditPhone == '') {
+                    alert('Phone không được trống !!')
+                    return;
+                }
+                if (inputEditAddress == '') {
+                    alert('Address không được trống !!')
+                    return;
+                }
+                customers[index] = new customer(id, inputEditFullName, inputEditEmail, inputEditPhone, inputEditAddress, inputBalance)
                 setData(key_Customer, customers);
-            } else {
-                customers = getData(key_Customer);
+                renderCustomers();
+                document.querySelector(`#editFullName`).value = null;
+                document.querySelector(`#editEmail`).value = null;
+                document.querySelector(`#editPhone`).value = null;
+                document.querySelector(`#editAddress`).value = null;
+                $('#updateCustomer').modal('hide');
+                // document.querySelector(`.saveCustomer`).classList.add("data-bs-dismiss="modal"");
             }
-        }
-        function mainMenu() {
-            initCustomers();
-            renderCustomers();
 
-        }
-        mainMenu();
+            function showDeposit(i) {
+                let tr = document.querySelector(`.tr_${i}`);
+                let depositFullname = tr.children[1].innerHTML;
+                let depositEmail = tr.children[2].innerHTML;
+                let balance = tr.children[5].innerHTML;
+                document.querySelector(`#depositFullName`).value = tr.children[1].innerHTML;
+                document.querySelector(`#depositEmail`).value = tr.children[2].innerHTML;
+                document.querySelector(`#balance`).value = tr.children[5].innerHTML;
+                document.querySelector(`#depositI`).value = i;
+                $('#depositCustomer').modal('show');
+            }
 
-    </script>
+
+            function deposit() {
+                let index = document.querySelector(`#depositI`).value;
+                let transactionAmount = parseInt(document.querySelector(`#transactionAmountDeposit`).value);
+                let oldBalance = parseInt(customers[index].balance);
+                let newBalance = parseInt(transactionAmount + oldBalance);
+                customers[index].balance = newBalance;
+                setData(key_Customer, customers);
+                renderCustomers();
+                document.querySelector(`#depositFullName`).value = null;
+                document.querySelector(`#depositEmail`).value = null;
+                document.querySelector(`#balance`).value = null;
+                document.querySelector(`#transactionAmountDeposit`).value = null;
+                alert('Nạp tiền thành công !!!');
+                $('#depositCustomer').modal('hide');
+            }
+
+
+            function showWithdraw(i) {
+                let tr = document.querySelector(`.tr_${i}`);
+                let depositFullname = tr.children[1].innerHTML;
+                let depositEmail = tr.children[2].innerHTML;
+                let balance = tr.children[5].innerHTML;
+                document.querySelector(`#withdrawFullName`).value = tr.children[1].innerHTML;
+                document.querySelector(`#withdrawEmail`).value = tr.children[2].innerHTML;
+                document.querySelector(`#balanceWithdraw`).value = tr.children[5].innerHTML;
+                document.querySelector(`#withdrawI`).value = i;
+                $('#withdrawCustomer').modal('show');
+            }
+
+
+            function withdraw() {
+                let index = document.querySelector(`#withdrawI`).value;
+                let transactionAmount = parseInt(document.querySelector(`#transactionAmountWithdraw`).value);
+                let oldBalance = parseInt(customers[index].balance);
+                if (oldBalance < transactionAmount) {
+                    alert('Số dư tài khoản không đủ !!!')
+                    document.querySelector(`#transactionAmountWithdraw`).value = null;
+                    return showWithdraw(index);
+                }
+
+                let newBalance = parseInt(oldBalance - transactionAmount);
+                customers[index].balance = newBalance;
+                setData(key_Customer, customers);
+                renderCustomers();
+                document.querySelector(`#depositFullName`).value = null;
+                document.querySelector(`#depositEmail`).value = null;
+                document.querySelector(`#balance`).value = null;
+                document.querySelector(`#transactionAmountWithdraw`).value = null;
+                alert('rút tiền thành công !!!');
+                $('#withdrawCustomer').modal('hide');
+            }
+
+            function showTransfer(i) {
+                let tr = document.querySelector(`.tr_${i}`);
+                let senderName = tr.children[1].innerHTML;
+                let senderEmail = tr.children[2].innerHTML;
+                let senderBalance = tr.children[5].innerHTML;
+                document.querySelector(`#senderName`).value = senderName;
+                document.querySelector(`#senderEmail`).value = senderEmail;
+                document.querySelector(`#senderBalance`).value = senderBalance;
+                let recipientName = [];
+                for(let i = 0; i < customers.length; i++){
+                        if(i !=tr){
+
+                            recipientName[i] = new recipient(customers[i].fullName);
+                        }
+                }
+                let txt = "";
+                    for(let i = 0; i< recipientName.length; i++){
+                       txt =  document.querySelector(`#optionRecipient`).innerHTML = recipientName[i].fullName;
+                }
+                $('#transferCustomer').modal('show');
+            }
+
+            function customer(id, fullName, email, phone, address, balance) {
+                this.id = id;
+                this.fullName = fullName;
+                this.email = email;
+                this.phone = phone;
+                this.address = address;
+                this.balance = balance;
+            }
+
+            function recipient(fullName){
+                this.fullName = fullName;
+            }
+
+            function getData(key) {
+                return JSON.parse(localStorage.getItem(key))
+            }
+            function setData(key, data) {
+                localStorage.setItem(key, JSON.stringify(data))
+            }
+            const key_Customer = "key_Customer";
+
+            function initCustomers() {
+                if (getData(key_Customer) == null) {
+                    setData(key_Customer, customers);
+                } else {
+                    customers = getData(key_Customer);
+                }
+            }
+            function mainMenu() {
+                initCustomers();
+                renderCustomers();
+
+            }
+            mainMenu();
+
+        </script>
 
 </body>
 
